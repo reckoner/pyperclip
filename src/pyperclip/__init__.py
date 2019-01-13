@@ -468,12 +468,12 @@ def init_windows_clipboard():
 def init_wsl_clipboard():
     def copy_wsl(text):
         text = _stringifyText(text) # Converts non-str values to str.
-        p = subprocess.Popen(['clip.exe'],
+        p = subprocess.Popen(['/mnt/c/windows/system32/clip.exe'],
                              stdin=subprocess.PIPE, close_fds=True)
         p.communicate(input=text.encode(ENCODING))
 
     def paste_wsl():
-        p = subprocess.Popen(['powershell.exe', '-command', 'Get-Clipboard'],
+        p = subprocess.Popen(['/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe', '-command', 'Get-Clipboard'],
                              stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE,
                              close_fds=True)
